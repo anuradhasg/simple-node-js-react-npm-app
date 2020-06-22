@@ -1,17 +1,14 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
+    agent any
+        
+    
     environment {
         CI = 'true'
     }
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                bat 'npm install'
+                git branch: 'master', url: 'https://github.com/anuradhasg/simple-node-js-react-npm-app.git'
             }
         }
         
